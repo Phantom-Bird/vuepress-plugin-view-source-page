@@ -32,7 +32,7 @@ export default defineUserConfig({
 
 支持的格式化选项 / supports:
 - 源文件相对路径 / Markdown file path (relative): `:filePath`
-  > [!WARNING]
+  > **Warning**  
   > 这个路径是相对于文档文件夹（通常为 `docs/`）的路径，而非项目文件夹的路径。  
   > This path is relative to the documentation folder (usually `docs/`), not the project folder.
 - 页面路径（去除 `.html`）/ Page path (without `.html`): `:pagePath`
