@@ -23,6 +23,7 @@ interface ViewSourceOptions {
    * supports: 
    * - Page title: `:title`
    * - Markdown filename (without `.md`): `:basename`
+   * - add a `<br/>` on narrow screen: `:narrowBr`
    */
   viewSourceTitlePattern?: string;
 }
@@ -35,12 +36,17 @@ function format(pattern: string, values: Record<string, any>): string {
   return res;
 }
 
-const css = `.vp-content {
-  --vp-layout-top-height: 20px;
+const css = `
+.vp-doc {
+  padding: 32px 24px;
+}
+
+.only-narrow {
   @media (min-width: 768px) {
-    max-width: 80%;
+    display: none;
   }
-}`;
+}
+`;
 
 export default (options: ViewSourceOptions) => ({
   name: 'vuepress-plugin-view-source-page',
@@ -49,7 +55,7 @@ export default (options: ViewSourceOptions) => ({
     const viewSourcePathPattern = options.viewSourcePathPattern
       || '/view-source/:filePath/';
     const viewSourceTitlePattern = options.viewSourceTitlePattern
-      || 'View Source of :title';
+      || 'View Source of :narrowBr:title';
 
     const originalPages = [...app.pages];  // 防止边遍历边修改
 
@@ -66,10 +72,17 @@ export default (options: ViewSourceOptions) => ({
       const viewSourceTitle = format(viewSourceTitlePattern, {
         title: page.title,
         basename: basename(page.filePath, '.md'),
+        narrowBr: '',
+      });
+
+      const viewSourceH1 = format(viewSourceTitlePattern, {
+        title: page.title,
+        basename: basename(page.filePath, '.md'),
+        narrowBr: '<br class="only-narrow"/>',
       });
 
       const viewSourceMarkdownContent = `
-# ${viewSourceTitle}
+# ${viewSourceH1}
 @[code md](${page.filePath})
 
 <style>
