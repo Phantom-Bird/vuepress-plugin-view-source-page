@@ -18,7 +18,7 @@ interface ViewSourceOptions {
    */
   viewSourcePathPattern?: string;
   /**
-   * default: `View Source of :title`
+   * default: `View Source of :narrowBr:title`
    * 
    * supports: 
    * - Page title: `:title`
