@@ -6,7 +6,7 @@
 
 没想着进包管理器，所以没搞这么多东西。
 
-## 使用 / Usage
+## 使用
 
 ```ts
 import vuepressPluginViewSourcePage from 'vuepress-plugin-view-source-page'
