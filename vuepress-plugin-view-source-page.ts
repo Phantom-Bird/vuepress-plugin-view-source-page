@@ -1,5 +1,4 @@
-// **WARNING**
-// 如果不使用 plume，请移除默认的 css
+const css = '/view-source-page-style.css';
 
 import { createPage, App } from 'vuepress/core'
 import { basename } from 'path'
@@ -14,7 +13,7 @@ interface ViewSourceOptions {
    * 
    * > **WARNING**
    * > 
-   * > 如果路径直接以 `.md` 结尾，vuepress 无法正常识别。此时请在末尾加上 `/`
+   * > If the path ends with `.md`, Vuepress cannot recognize it properly. In this case, please add `/` at the end of the path.
    */
   viewSourcePathPattern?: string;
   /**
@@ -35,18 +34,6 @@ function format(pattern: string, values: Record<string, any>): string {
   }
   return res;
 }
-
-const css = `
-.vp-doc {
-  padding: 32px 24px;
-}
-
-.only-narrow {
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-`;
 
 export default (options: ViewSourceOptions) => ({
   name: 'vuepress-plugin-view-source-page',
@@ -85,10 +72,8 @@ export default (options: ViewSourceOptions) => ({
 # ${viewSourceH1}
 @[code md](${page.filePath})
 
-<style>
-${css}
-</style>
-      `;  // 只能用绝对路径
+<link href="${css}" rel="stylesheet"/>
+`;  // 只能用绝对路径
 
       // 创建新页面
       const viewSourcePage = await createPage(app, {
