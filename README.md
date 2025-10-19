@@ -8,6 +8,8 @@
 
 ## 使用
 
+将 `view-source-page-style.css` 放入 `.vuepress/public` 文件夹。
+
 ```ts
 import vuepressPluginViewSourcePage from 'vuepress-plugin-view-source-page'
 

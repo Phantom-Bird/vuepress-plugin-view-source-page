@@ -8,6 +8,8 @@ I didn't do so many things in this imperfect project.
 
 ## Usage
 
+Put `view-source-page-style.css` into folder `.vuepress/public`.
+
 ```ts
 import vuepressPluginViewSourcePage from 'vuepress-plugin-view-source-page'
 
